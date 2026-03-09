@@ -16,7 +16,7 @@ const SearchField: React.FC = () => {
     } else {
         enableAllVisibility();
     }
-  }, [searchInputValue]);
+  }, [searchInputValue, matchedTodos, enableAllVisibility]);
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault(); 

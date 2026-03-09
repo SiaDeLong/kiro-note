@@ -22,7 +22,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         const storedTheme = localStorage.getItem('theme');
-        const initialTheme = storedTheme || 'dark';
+        const initialTheme = storedTheme ?? 'dark';
         setTheme(initialTheme);
         document.documentElement.classList.add(initialTheme);
         if (!storedTheme) {
