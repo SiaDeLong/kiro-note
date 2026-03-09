@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import ProgressMenu from "~/component/ProgressSection/ProgressMenu";
 import TodoSection from "~/component/TodoSection/TodoSection";
 import { useModal } from "~/context/ModalContext";
@@ -10,11 +9,7 @@ import TodoModal from "~/modal/TodoModal";
 
 export default function HomePage() {
   const { isTodoModalOpen, nameForm, todoToEdit, isConfirmDeleteModalOpen } = useModal();
-  const { todos, initTodo} = useTodos();
-
-  useEffect(() => {
-    initTodo();
-  }, []);
+  const { todos } = useTodos();
 
   return (
     <div>

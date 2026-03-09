@@ -9,12 +9,12 @@ const DarkMode: React.FC = () => {
   
   return (
     <button
-      className="mt-8 text-left flex items-center justify-between"
+      className="group flex justify-between items-center mt-8 text-left"
       onClick={toggleTheme}
     >
-      <span className="dark:text-slate-200">Dark Theme</span>
-      <div className="w-10 h-5 bg-slate-200 rounded-full px-0.5 dark:bg-slate-700/[.3] relative flex items-center dark:justify-end">
-        <div className="w-4 h-4 rounded-full bg-violet-600 absolute"></div>
+      <span className="font-medium dark:text-slate-100">Dark Theme</span>
+      <div className="relative flex dark:justify-end items-center bg-slate-200 dark:bg-slate-800/50 group-hover:shadow-md px-0.5 rounded-full w-10 h-5 transition-all duration-300">
+        <div className="absolute bg-gradient-to-r from-violet-600 to-purple-600 shadow-md rounded-full w-4 h-4 transition-all duration-300"></div>
       </div>
     </button>
   );

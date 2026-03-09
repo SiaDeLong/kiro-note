@@ -12,8 +12,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body className="bg-slate-200 min-h-screen text-slate-600 dark:bg-slate-900 dark:text-slate-400 xl:text-base sm:text-sm text-xs">
+    <html lang="en" className={`${GeistSans.variable} dark`}>
+      <body className="bg-slate-200 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 min-h-screen text-slate-600 dark:text-slate-300 text-xs sm:text-sm xl:text-base transition-colors duration-300">
         <div>
           <ThemeProvider>
             <TodoProvider>
@@ -23,7 +23,7 @@ export default function RootLayout({
             </TodoProvider>
           </ThemeProvider>
         </div>
-        <footer className="text-center py-6 font-medium dark:text-slate-400">Creation • Eric Sia</footer>
+        <footer className="py-6 font-medium dark:text-slate-400 text-center">Creation • Eric Sia</footer>
       </body>
     </html>
   );

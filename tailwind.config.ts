@@ -7,11 +7,17 @@ export default {
     extend: {
       colors: {
         slate: {
-          800: "#141E33",
+          800: "#1e293b",
+          850: "#1a2332",
+          900: "#0f172a",
+          950: "#020617",
         },
       },
       screens: {
         "2xl": "1736px",
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
     },
   },

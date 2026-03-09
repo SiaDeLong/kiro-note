@@ -82,22 +82,22 @@ const TodoModal: React.FC<{
   };
   return (
     <div
-      className="xl:text-base sm:text-sm text-xs fixed bg-slate-600/[.2] w-full h-full z-40 grid place-items-center px-2 text-slate-600 dark:text-slate-200"
+      className="z-40 fixed place-items-center grid bg-slate-900/60 backdrop-blur-sm px-2 w-full h-full text-slate-600 dark:text-slate-200 text-xs sm:text-sm xl:text-base"
       onClick={closeTodoModal}
     >
       <motion.section
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        className="relative bg-slate-200 max-w-lg w-full rounded-lg p-3 sm:p-5 flex flex-col justify-start dark:bg-slate-900"
+        className="relative flex flex-col justify-start bg-slate-200 dark:bg-slate-900/95 shadow-2xl dark:backdrop-blur-md p-3 sm:p-5 dark:border dark:border-slate-800 rounded-2xl w-full max-w-lg"
         onClick={(e) => e.stopPropagation()}>
         <button
           aria-label="close alert"
-          className="absolute right-3 sm:right-4"
+          className="right-3 sm:right-4 absolute"
           onClick={closeTodoModal}
         >
           <XMarkIcon className="w-6 h-6" />
         </button>
-        <h2 className="font-medium mb-5 text-lg md:text-2xl">{nameForm}</h2>
+        <h2 className="mb-5 font-medium text-lg md:text-2xl">{nameForm}</h2>
         <form
           className="flex flex-col stylesInputsField"
           onSubmit={addNewTodoHandler}
@@ -139,7 +139,7 @@ const TodoModal: React.FC<{
             setChecked={setIsImportant}
             label="Mark as important"
           />
-          <button type="submit" className="btn mt-5">
+          <button type="submit" className="mt-5 btn">
             {nameForm}
           </button>
         </form>
@@ -156,13 +156,13 @@ const InputCheckbox: React.FC<{
   setChecked: (value: React.SetStateAction<boolean>) => void;
 }> = ({ isChecked, setChecked, label }) => {
   return (
-    <label className="mb-0 flex items-center cursor-pointer">
-      <div className="mr-2 bg-slate-300/[.5] dark:bg-slate-800 w-5 h-5 rounded-full grid place-items-center border border-slate-300 dark:border-slate-700">
+    <label className="flex items-center mb-0 cursor-pointer">
+      <div className="place-items-center grid bg-slate-300/[.5] dark:bg-slate-800 mr-2 border border-slate-300 dark:border-slate-700 rounded-full w-5 h-5">
         {isChecked && (
-          <span className="bg-violet-600 dark:bg-violet-800 w-2 h-2 block rounded-full"></span>
+          <span className="block bg-violet-600 dark:bg-violet-800 rounded-full w-2 h-2"></span>
         )}
       </div>
-      <span className="order-1 flex-1">{label}</span>
+      <span className="flex-1 order-1">{label}</span>
       <input
         type="checkbox"
         className="sr-only"

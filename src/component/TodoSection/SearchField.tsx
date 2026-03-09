@@ -23,8 +23,8 @@ const SearchField: React.FC = () => {
   };
 
   return (
-    <div className="flex-1 col-span-3 row-start-2 md:pr-10">
-      <form className=" relative md:max-w-xs w-full" autoComplete="off" onSubmit={handleSubmit}>
+    <div className="flex-1">
+      <form className="relative w-full xl:max-w-sm" autoComplete="off" onSubmit={handleSubmit}>
         <label htmlFor="search" className="sr-only"></label>
         <input
           type="search"
@@ -34,9 +34,9 @@ const SearchField: React.FC = () => {
           onChange={({ currentTarget }) => {
             setSearchInputValue(currentTarget.value);
           }}
-          className="inputStyles w-full"
+          className="w-full inputStyles"
         />
-        <MagnifyingGlassIcon className="absolute w-4 sm:w-5 right-4 top-3.5 text-slate-400" />
+        <MagnifyingGlassIcon className="top-3.5 right-4 absolute w-4 sm:w-5 text-slate-400" />
       </form>
     </div>
   );

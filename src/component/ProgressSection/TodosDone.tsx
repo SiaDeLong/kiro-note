@@ -3,6 +3,7 @@ import useTodayTodos from "~/hook/useTodayTodos";
 import useCompletedTodos from "~/hook/useCompletedTodos";
 import { useTodos } from "~/context/TodoContext";
 import { CheckIcon } from "@heroicons/react/16/solid";
+import { motion, AnimatePresence } from "framer-motion";
 
 const TodosDone: React.FC = () => {
   const todaysTodos = useTodayTodos();
@@ -27,7 +28,7 @@ const TodosDone: React.FC = () => {
     <>
       {todaysTodos.length !== 0 && (
         <div className="mt-8">
-          <span className="flex justify-between mb-2">
+          <span className="flex justify-between mb-2 font-medium dark:text-slate-300">
             <span>Todos today</span> {todayTodosDone.length}/
             {todaysTodos.length}
           </span>
@@ -38,7 +39,7 @@ const TodosDone: React.FC = () => {
       )}
       {todos.length !== 0 && (
         <div className="mt-6">
-          <span className="flex justify-between mb-2">
+          <span className="flex justify-between mb-2 font-medium dark:text-slate-300">
             <span>All todos </span> {allTodosDone.length}/{todos.length}
           </span>
           <div className="barProgress">
@@ -48,22 +49,38 @@ const TodosDone: React.FC = () => {
       )}
 
       {todaysTodos.length === 0 && (
-        <span className="mt-6 block pt-4 border-t-slate-200 dark:border-t-slate-700/[.3] border-t-2">
+        <span className="block mt-6 pt-4 border-t-2 border-t-slate-200 dark:border-t-slate-800 dark:text-slate-400">
           No todos today
         </span>
       )}
 
       {todaysTodos.length > 0 && (
         <div className="mt-8">
-          <span className="mb-2 block">Today&apos;s todos</span>
+          <span className="block mb-2 font-medium dark:text-slate-300">Today&apos;s todos</span>
           <ul>
-            {todaysTodosToShow.map((todo) => (
-              <li key={todo.id} className="py-2 pl-6 dark:text-slate-200 list-item">
-                <span className="flex">
-                  {todo.completed ? <CheckIcon className="w-6 h-6" /> : null} {todo.title}
-                </span>
-              </li>
-            ))}
+            <AnimatePresence mode="popLayout">
+              {todaysTodosToShow.map((todo) => (
+                <motion.li 
+                  key={todo.id} 
+                  layout
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{
+                    layout: {
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30
+                    }
+                  }}
+                  className="py-2 pl-6 dark:text-slate-100 list-item"
+                >
+                  <span className="flex items-center gap-2">
+                    {todo.completed ? <CheckIcon className="w-5 h-5 text-violet-500" /> : null} {todo.title}
+                  </span>
+                </motion.li>
+              ))}
+            </AnimatePresence>
           </ul>
         </div>
       )}
