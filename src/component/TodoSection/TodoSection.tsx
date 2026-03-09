@@ -90,7 +90,7 @@ const TodoSection: React.FC<Props> = ({ title, todos }) => {
         })`;
 
     return (
-        <main className="ml-auto pt-5 pr-3 md:pr-8 pb-8 sm:pb-16 md:w-full xl:w-4/5 min-h-screen">
+        <main className="ml-auto pt-5 pr-3 md:pr-8 pb-8 sm:pb-16 pl-3 md:pl-8 xl:pl-0 md:w-full xl:w-4/5 min-h-screen">
             <DragHint />
             <TodoHeader />
             <section>
