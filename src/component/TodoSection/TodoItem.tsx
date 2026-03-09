@@ -142,7 +142,7 @@ const TodoItem: React.FC<{ isListInView1: boolean; todo: Todo; isDragDisabled: b
               todoId={todo.id}
               isListInView1={isListInView1}
             />
-            <BtnMarkAsImportant todoId={todo.id} todoImportant={todo.important} />
+            <BtnMarkAsImportant todoId={todo.id} todoImportant={todo.important} isToday={todo.date === todayDate} />
             <BtnDeleteTodo todoId={todo.id} />
             <BtnEditTodo todo={todo} />
           </div>
