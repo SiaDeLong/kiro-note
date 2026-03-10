@@ -78,3 +78,12 @@
   animation: fadeIn 0.3s ease-out;
 }
 
+/* Mobile drag and drop support */
+.todosList {
+  touch-action: pan-y;
+}
+
+.todosList li {
+  touch-action: manipulation;
+}
+

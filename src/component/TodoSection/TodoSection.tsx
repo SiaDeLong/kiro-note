@@ -56,11 +56,6 @@ const TodoSection: React.FC<Props> = ({ title, todos }) => {
     const [activeTodo, setActiveTodo] = useState<Todo | null>(null);
 
     const sensors = useSensors(
-        useSensor(PointerSensor, {
-            activationConstraint: {
-                distance: 8, // 8px of movement required before drag starts
-            },
-        }),
         useSensor(KeyboardSensor, {
             coordinateGetter: sortableKeyboardCoordinates,
         })
@@ -70,6 +65,10 @@ const TodoSection: React.FC<Props> = ({ title, todos }) => {
         const { active } = event;
         const todo = todos.find((t) => t.id === active.id);
         setActiveTodo(todo ?? null);
+        
+        // Prevent scrolling during drag on mobile
+        document.body.style.overflow = 'hidden';
+        document.body.style.touchAction = 'none';
     };
 
     const handleDragEnd = (event: DragEndEvent) => {
@@ -84,10 +83,18 @@ const TodoSection: React.FC<Props> = ({ title, todos }) => {
         }
         
         setActiveTodo(null);
+        
+        // Re-enable scrolling after drag
+        document.body.style.overflow = '';
+        document.body.style.touchAction = '';
     };
 
     const handleDragCancel = () => {
         setActiveTodo(null);
+        
+        // Re-enable scrolling if drag is cancelled
+        document.body.style.overflow = '';
+        document.body.style.touchAction = '';
     };
 
     const todosTitle = `${title} (${todos.length} ${todos.length === 1 ? "todo" : "todos"
