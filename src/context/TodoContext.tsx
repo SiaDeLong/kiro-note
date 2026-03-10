@@ -193,11 +193,17 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const createTodo = (newTodo: Todo): void => {
-    setTodos(prevTodos => sortTodos([...prevTodos, newTodo]));
+    setTodos(prevTodos => {
+      const newTodos = [...prevTodos, newTodo];
+      return sortByDate ? sortTodos(newTodos) : newTodos;
+    });
   };
 
   const editTodo = (editedTodo: Todo): void => {
-    setTodos(prevTodos => sortTodos(prevTodos.map(todo => (todo.id === editedTodo.id ? editedTodo : todo))));
+    setTodos(prevTodos => {
+      const updatedTodos = prevTodos.map(todo => (todo.id === editedTodo.id ? editedTodo : todo));
+      return sortByDate ? sortTodos(updatedTodos) : updatedTodos;
+    });
   };
   
   const removeTodo = (id: string) => {
@@ -230,7 +236,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <TodoContext.Provider value={{ todos: sortTodos(todos), sortByDate, initTodo, createTodo, editTodo, removeTodo, toggleTodo, toggleImportant, enableAllVisibility, toggleSortByDate, reorderTodos }}>
+    <TodoContext.Provider value={{ todos: sortByDate ? sortTodos(todos) : todos, sortByDate, initTodo, createTodo, editTodo, removeTodo, toggleTodo, toggleImportant, enableAllVisibility, toggleSortByDate, reorderTodos }}>
       {children}
     </TodoContext.Provider>
   );

@@ -51,11 +51,12 @@ const item = {
 
 const TodoSection: React.FC<Props> = ({ title, todos }) => {
     const { openTodoModal } = useModal();
-    const { sortByDate, reorderTodos } = useTodos();
+    const { sortByDate, reorderTodos, todos: allTodos } = useTodos();
     const [isListInView1] = useState<boolean>(false);
     const [activeTodo, setActiveTodo] = useState<Todo | null>(null);
 
     const sensors = useSensors(
+        useSensor(PointerSensor),
         useSensor(KeyboardSensor, {
             coordinateGetter: sortableKeyboardCoordinates,
         })
@@ -75,11 +76,14 @@ const TodoSection: React.FC<Props> = ({ title, todos }) => {
         const { active, over } = event;
 
         if (over && active.id !== over.id) {
-            const oldIndex = todos.findIndex((todo) => todo.id === active.id);
-            const newIndex = todos.findIndex((todo) => todo.id === over.id);
+            // Find indices in the ALL todos array (not just visible ones)
+            const oldIndex = allTodos.findIndex((todo) => todo.id === active.id);
+            const newIndex = allTodos.findIndex((todo) => todo.id === over.id);
 
-            const newOrder = arrayMove(todos, oldIndex, newIndex);
-            reorderTodos(newOrder);
+            if (oldIndex !== -1 && newIndex !== -1) {
+                const newOrder = arrayMove(allTodos, oldIndex, newIndex);
+                reorderTodos(newOrder);
+            }
         }
         
         setActiveTodo(null);
