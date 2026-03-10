@@ -89,7 +89,7 @@ const TodoModal: React.FC<{
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         className="relative flex flex-col justify-start bg-slate-200 dark:bg-slate-900/95 shadow-2xl dark:backdrop-blur-md p-3 sm:p-5 dark:border dark:border-slate-800 rounded-2xl w-full max-w-lg"
-        onClick={(e) => e.stopPropagation()}>
+        onClick={(e: React.MouseEvent) => e.stopPropagation()}>
         <button
           aria-label="close alert"
           className="right-3 sm:right-4 absolute"

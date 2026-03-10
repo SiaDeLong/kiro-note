@@ -135,7 +135,7 @@ const TodoItem: React.FC<{ isListInView1: boolean; todo: Todo; isDragDisabled: b
           <div
             className={`flex border-dashed border-slate-200 dark:border-slate-700/[.3] ${isListInView1 ? "items-center" : "border-t-2 w-full pt-4 mt-4"
               } ${todo.date === todayDate ? "border-violet-500 dark:border-violet-700" : ""}`}
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e: React.MouseEvent) => e.stopPropagation()}
           >
             <BtnToggleCompleted
               todoCompleted={todo.completed}
