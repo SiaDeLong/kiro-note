@@ -56,7 +56,11 @@ const TodoSection: React.FC<Props> = ({ title, todos }) => {
     const [activeTodo, setActiveTodo] = useState<Todo | null>(null);
 
     const sensors = useSensors(
-        useSensor(PointerSensor),
+        useSensor(PointerSensor, {
+            activationConstraint: {
+                distance: 8, // 8px of movement required before drag starts
+            },
+        }),
         useSensor(KeyboardSensor, {
             coordinateGetter: sortableKeyboardCoordinates,
         })
