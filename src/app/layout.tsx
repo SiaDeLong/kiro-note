@@ -69,7 +69,7 @@ export default function RootLayout({
             </TodoProvider>
           </ThemeProvider>
         </div>
-        <footer className="py-6 font-medium dark:text-slate-400 text-center">Creation • Eric Sia</footer>
+        <footer className="py-6 font-medium dark:text-slate-400 text-center">© 2024 Eric Sia</footer>
       </body>
     </html>
   );
